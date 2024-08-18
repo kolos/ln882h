@@ -1,3 +1,5 @@
+fetched from: https://gitee.com/lightningsemi/ln882h.git
+
 # LN882H SDK 简介
 
 # 编译方式
