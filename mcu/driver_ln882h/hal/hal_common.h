@@ -12,9 +12,9 @@
 #ifndef __HAL_COMMON_H__
 #define __HAL_COMMON_H__
 
-#ifdef __cpluscplus
+#ifdef __cplusplus
     extern "C" {
-#endif // __cpluscplus
+#endif // __cplusplus
 
 #include "proj_config.h"
 #include "ln_types.h"
@@ -70,7 +70,8 @@ typedef enum
 #endif /* HAL_ASSERT_EN */  
 
 
-#ifdef __cpluscplus
+#ifdef __cplusplus
     }
-#endif // __cpluscplus
+#endif // __cplusplus
+
 #endif // __HAL_COMMON_H_

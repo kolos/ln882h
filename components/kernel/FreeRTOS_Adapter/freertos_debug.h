@@ -57,19 +57,19 @@ extern "C" {
             OS_SYSLOG(__VA_ARGS__);  \
     } while (0)
 
-#define OS_DBG(...)     OS_LOG(OS_DBG_ON, "[os] "__VA_ARGS__)
-#define OS_WARN(...)    OS_LOG(OS_WARN_ON, "[os WARN] "__VA_ARGS__)
+#define OS_DBG(...)     OS_LOG(OS_DBG_ON, "[os] " __VA_ARGS__)
+#define OS_WARN(...)    OS_LOG(OS_WARN_ON, "[os WARN] " __VA_ARGS__)
 #define OS_ERR(...)                         \
     do {                                            \
-        OS_LOG(OS_ERR_ON, "[os ERR] %s():%d, ",  \
-               __func__, __LINE__, __VA_ARGS__);          \
+        OS_LOG(OS_ERR_ON, "[os ERR] %s():%ld, " __VA_ARGS__,  \
+               __func__, __LINE__);          \
         if (OS_ABORT_ON)                            \
             OS_ABORT();                             \
     } while (0)
 
 #define OS_HANDLE_ASSERT(exp, handle)               \
     if (OS_HANDLE_CHECK && !(exp)) {                \
-        OS_ERR("handle %"OS_HANDLE_F"\r\n", handle);\
+        OS_ERR("handle %" OS_HANDLE_F "\r\n", handle);\
         return OS_E_PARAM;                          \
     }
 

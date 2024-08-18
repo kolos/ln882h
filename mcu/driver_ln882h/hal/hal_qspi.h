@@ -103,7 +103,7 @@ void  hal_qspi_standard_read_word(uint32_t *rd_ptr, uint32_t rd_len_in_word, uin
 
 
 #ifdef __cplusplus
-    extern "C" {
+    }
 #endif // __cplusplus
 
 #endif /* __HAL_QSPI_H*/

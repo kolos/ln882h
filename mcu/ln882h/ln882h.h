@@ -193,7 +193,7 @@ typedef enum IRQn
 #define LN882H_SDK_VERSION_STRING   LN882H_SDK_VERSTR(LN882H_SDK_MAJOR_V) "."   \
                                     LN882H_SDK_VERSTR(LN882H_SDK_MINOR_V)       \
                                     LN882H_SDK_VERSION_STRING_SUFFIX
-#define LN882H_SDK_BUILD_DATE_TIME  ""__DATE__" "__TIME__
+#define LN882H_SDK_BUILD_DATE_TIME  "" __DATE__ " " __TIME__
 
 
 #ifdef __cplusplus
