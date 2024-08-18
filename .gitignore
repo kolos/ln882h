@@ -34,3 +34,5 @@ out
 .lib
 build/
 buildout*.txt
+
+project/
