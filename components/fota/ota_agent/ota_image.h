@@ -1,7 +1,7 @@
 #ifndef __OTA_IMAGE_H__
 #define __OTA_IMAGE_H__
 
-#include "flash_partition_mgr.h"
+#include "fs/partition_mgr/flash_partition_mgr.h"
 #include "ota_types.h"
 #include "ota_err.h"
 

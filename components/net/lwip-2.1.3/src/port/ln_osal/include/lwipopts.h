@@ -74,10 +74,12 @@ a lot of data that needs to be copied, this should be set high. */
 /* PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool. */
 #define PBUF_POOL_BUFSIZE       772 //(NETIF_MTU + PBUF_LINK_HLEN)
 
+/*
 #if PBUF_POOL_BUFSIZE > (TCP_MSS+PBUF_IP_HLEN+PBUF_TRANSPORT_HLEN+PBUF_LINK_ENCAPSULATION_HLEN+PBUF_LINK_HLEN)
 #undef PBUF_POOL_BUFSIZE
 #define PBUF_POOL_BUFSIZE       (TCP_MSS+PBUF_IP_HLEN+PBUF_TRANSPORT_HLEN+PBUF_LINK_ENCAPSULATION_HLEN+PBUF_LINK_HLEN)
 #endif
+*/
 
 /* ---------- TCP options ---------- */
 #define LWIP_TCP                (1)
@@ -149,48 +151,22 @@ a lot of data that needs to be copied, this should be set high. */
 /* ----------  DNS options  ----------*/
 #define LWIP_DNS                        1
 
-/*---------- DEBUG options ----------*/
-#define LWIP_DEBUG                      LWIP_DBG_OFF
-#define PBUF_DEBUG                      LWIP_DBG_OFF
+/* ----------  SNTP options ----------*/
+#define SNTP_SERVER_DNS                 1
 
-#if !(LWIP_DEBUG)
-#define LWIP_NOASSERT
-#endif
+#define SNTP_SET_SYSTEM_TIME_US(sec, us)                                                                               \
+	do {                                                                                                               \
+		struct timeval tv = {.tv_sec = sec, .tv_usec = us};                                                            \
+		settimeofday(&tv, NULL);                                                                                       \
+	} while (0);
 
-// Debug Options
-#define NETIF_DEBUG                 LWIP_DBG_OFF
-#define PBUF_DEBUG                  LWIP_DBG_OFF
-#define API_LIB_DEBUG               LWIP_DBG_OFF
-#define API_MSG_DEBUG               LWIP_DBG_OFF
-#define SOCKETS_DEBUG               LWIP_DBG_OFF
-#define ICMP_DEBUG                  LWIP_DBG_OFF
-#define IGMP_DEBUG                  LWIP_DBG_OFF
-#define INET_DEBUG                  LWIP_DBG_OFF
-#define IP_DEBUG                    LWIP_DBG_OFF
-#define IP_REASS_DEBUG              LWIP_DBG_OFF
-#define RAW_DEBUG                   LWIP_DBG_OFF
-#define MEM_DEBUG                   LWIP_DBG_OFF
-#define MEMP_DEBUG                  LWIP_DBG_OFF
-#define SYS_DEBUG                   LWIP_DBG_OFF
-#define TIMERS_DEBUG                LWIP_DBG_OFF
-#define TCP_DEBUG                   LWIP_DBG_OFF
-#define TCP_INPUT_DEBUG             LWIP_DBG_OFF
-#define TCP_FR_DEBUG                LWIP_DBG_OFF
-#define TCP_RTO_DEBUG               LWIP_DBG_OFF
-#define TCP_CWND_DEBUG              LWIP_DBG_OFF
-#define TCP_WND_DEBUG               LWIP_DBG_OFF
-#define TCP_OUTPUT_DEBUG            LWIP_DBG_OFF
-#define TCP_RST_DEBUG               LWIP_DBG_OFF
-#define TCP_QLEN_DEBUG              LWIP_DBG_OFF
-#define UDP_DEBUG                   LWIP_DBG_OFF
-#define TCPIP_DEBUG                 LWIP_DBG_OFF
-#define SLIP_DEBUG                  LWIP_DBG_OFF
-#define DHCP_DEBUG                  LWIP_DBG_OFF
-#define AUTOIP_DEBUG                LWIP_DBG_OFF
-#define DNS_DEBUG                   LWIP_DBG_OFF
-#define IP6_DEBUG                   LWIP_DBG_OFF
-
-#define ETHARP_DEBUG                LWIP_DBG_OFF
+#define SNTP_GET_SYSTEM_TIME(sec, us)                                                                                  \
+	do {                                                                                                               \
+		struct timeval tv = {.tv_sec = 0, .tv_usec = 0};                                                               \
+		gettimeofday(&tv, NULL);                                                                                       \
+		(sec) = tv.tv_sec;                                                                                             \
+		(us)  = tv.tv_usec;                                                                                            \
+	} while (0);
 
 /*----------- OS options ------------*/
 #define TCPIP_THREAD_NAME              "TCP/IP"

@@ -2,7 +2,7 @@
 #include "ota_image.h"
 #include "ota_port.h"
 #include "xz_decompress.h"
-#include "flash_partition_mgr.h"
+#include "fs/partition_mgr/flash_partition_mgr.h"
 #include <string.h>
 
 static uint8_t temp_buf[LEN_4KB];
